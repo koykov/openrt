@@ -81,3 +81,17 @@ func TestIndexSSE(t *testing.T) {
 		})
 	}
 }
+
+func TestIndexByteSSE(t *testing.T) {
+	for _, tc_ := range indexTC {
+		if len(tc_.b) > 1 || len(tc_.b) == 0 {
+			continue
+		}
+		t.Run(fmt.Sprintf("%s__%s", tc_.a, tc_.b), func(t *testing.T) {
+			i := IndexByteSSE([]byte(tc_.a), tc_.b[0])
+			if i != tc_.i {
+				t.FailNow()
+			}
+		})
+	}
+}

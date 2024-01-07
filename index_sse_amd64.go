@@ -26,3 +26,13 @@ func IndexSSE(str, needle []byte) int {
 
 //go:noescape
 func indexSSE(str, needle []byte) int
+
+func IndexByteSSE(b []byte, c byte) int {
+	if len(b) == 0 {
+		return -1
+	}
+	return indexByteSSE(b, c)
+}
+
+//go:noescape
+func indexByteSSE(b []byte, c byte) int
