@@ -17,7 +17,7 @@ func IndexSSE(str, needle []byte) int {
 	}
 	if n < 16 || m < 12 {
 		_ = str[n-1]
-		for i := 0; i < n-len(needle); i++ {
+		for i := 0; i < n-len(needle)+1; i++ {
 			if bytes.Equal(str[i:i+m], needle) {
 				return i
 			}
