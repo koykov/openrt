@@ -6,7 +6,10 @@ import "bytes"
 
 func IndexSSE(str, needle []byte) int {
 	n, m := len(str), len(needle)
-	if n == 0 || m == 0 || n < m {
+	if m == 0 {
+		return 0
+	}
+	if n == 0 || n < m {
 		return -1
 	}
 	if n == m && bytes.Equal(str, needle) {
