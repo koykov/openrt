@@ -1,6 +1,7 @@
 package simdbyte
 
 import (
+	"bytes"
 	"fmt"
 	"testing"
 )
@@ -91,6 +92,32 @@ func TestIndexByteSSE(t *testing.T) {
 			i := IndexByteSSE([]byte(tc_.a), tc_.b[0])
 			if i != tc_.i {
 				t.FailNow()
+			}
+		})
+	}
+}
+
+func BenchmarkIndexByteSSE(b *testing.B) {
+	for _, tc_ := range indexTC {
+		if len(tc_.b) > 1 || len(tc_.b) == 0 {
+			continue
+		}
+		b.Run(fmt.Sprintf("sse: %s__%s", tc_.a, tc_.b), func(b *testing.B) {
+			b.ReportAllocs()
+			for i := 0; i < b.N; i++ {
+				x := IndexByteSSE([]byte(tc_.a), tc_.b[0])
+				if x != tc_.i {
+					b.FailNow()
+				}
+			}
+		})
+		b.Run(fmt.Sprintf("vanilla: %s__%s", tc_.a, tc_.b), func(b *testing.B) {
+			b.ReportAllocs()
+			for i := 0; i < b.N; i++ {
+				x := bytes.IndexByte([]byte(tc_.a), tc_.b[0])
+				if x != tc_.i {
+					b.FailNow()
+				}
 			}
 		})
 	}
