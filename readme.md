@@ -1,3 +1,3 @@
-# SIMD byte
+# Open runtime
 
-...
+Makes runtime functions exportable.
