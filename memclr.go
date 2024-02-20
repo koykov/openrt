@@ -6,8 +6,11 @@ func Memclr(p []byte) {
 	if len(p) == 0 {
 		return
 	}
-	ptr := unsafe.Pointer(&p[0])
-	memclrNoHeapPointers(ptr, uintptr(len(p)))
+	MemclrUnsafe(unsafe.Pointer(&p[0]), len(p))
+}
+
+func MemclrUnsafe(ptr unsafe.Pointer, len_ int) {
+	memclrNoHeapPointers(ptr, uintptr(len_))
 }
 
 //go:noescape
