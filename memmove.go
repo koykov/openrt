@@ -2,7 +2,7 @@ package openrt
 
 import "unsafe"
 
-// Memmove copies n bytes from "from" to "to".
+// Memmove moves n bytes from "from" to "to".
 func Memmove(to, from unsafe.Pointer, n uintptr) {
 	memmove(to, from, n)
 }

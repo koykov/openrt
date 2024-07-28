@@ -2,7 +2,7 @@ package openrt
 
 import "unsafe"
 
-// Memequal copies n bytes from "from" to "to".
+// Memequal checks equality of a and b. Both arrays must have same length.
 func Memequal(a, b unsafe.Pointer, size uintptr) bool {
 	return memequal(a, b, size)
 }
